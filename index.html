@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Blue Shed Group | Personal & Leadership Transformation</title>
+  <meta name="description" content="Empowering professionals to build flexible, purpose-driven careers through personal growth, leadership development, and mindset education." />
+  <meta property="og:title" content="The Blue Shed Group | Personal & Leadership Transformation" />
+  <meta property="og:description" content="Empowering professionals to build flexible, purpose-driven careers through personal growth, leadership development, and mindset education." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_GB" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            background: '#FDFBF7',
+            foreground: '#1a1a1a',
+            accent: '#1a4b8c',
+            'accent-light': '#e4ecf5',
+            muted: '#6b7280',
+            surface: '#ffffff',
+            'surface-alt': '#f5f2ec',
+            border: '#e5e2dc',
+            secondary: '#f0ede7',
+            'muted-foreground': '#6b7280',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: #FDFBF7; color: #1a1a1a; font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; }
+    ::selection { background: #1a4b8c; color: white; }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(0.25,0.1,0.25,1), transform 0.7s cubic-bezier(0.25,0.1,0.25,1); }
+    .reveal.from-left { transform: translateX(40px); }
+    .reveal.from-right { transform: translateX(-40px); }
+    .reveal.visible { opacity: 1; transform: translate(0,0); }
+
+    /* Globe animation */
+    .globe-wireframe {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .globe-wireframe svg { animation: globe-spin 30s linear infinite; opacity: 0.12; }
+    @keyframes globe-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* Hero underline animation */
+    .hero-underline { width: 0; transition: width 1.5s ease-out; }
+    .hero-underline.visible { width: 100%; }
+
+    /* Pulse */
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+
+    /* Testimonial transitions */
+    .testimonial-image { transition: all 0.4s ease-in-out; }
+    .testimonial-text { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
+
+    /* Service card hover */
+    .service-card:hover img { transform: scale(1.05); }
+    .service-card img { transition: transform 0.7s cubic-bezier(0.32,0.72,0,1); }
+
+    /* Nav scroll state */
+    .nav-scrolled { background: rgba(255,255,255,0.8) !important; box-shadow: 0 8px 32px rgba(26,75,140,0.06); }
+
+    /* Mobile menu */
+    .mobile-overlay { transition: opacity 0.5s cubic-bezier(0.32,0.72,0,1); }
+    .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+    .mobile-overlay .menu-item { transition: opacity 0.5s cubic-bezier(0.32,0.72,0,1), transform 0.5s cubic-bezier(0.32,0.72,0,1); }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav id="main-nav" class="fixed top-6 left-1/2 z-40 -translate-x-1/2 transition-all duration-500 bg-surface/50 backdrop-blur-lg rounded-full border border-border/60 px-2 py-2">
+    <div class="flex items-center gap-1">
+      <a href="#" class="flex items-center gap-2 px-3 py-1">
+        <img src="bsg1.jpg" alt="Blue Shed Group" class="h-11 w-11 object-contain" />
+        <span class="text-sm font-semibold tracking-tight text-foreground">The Blue Shed Group</span>
+      </a>
+      <div class="hidden items-center gap-0.5 md:flex">
+        <a href="#about" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">About</a>
+        <a href="#services" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Services</a>
+        <a href="#testimonials" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Testimonials</a>
+        <a href="#contact" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Contact</a>
+      </div>
+      <a href="https://calendly.com/twiltshire9/business-interview?month=2026-03" target="_blank" rel="noopener noreferrer" class="hidden rounded-full bg-accent px-5 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-accent/90 active:scale-[0.98] md:block">Book a call</a>
+      <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-accent-light md:hidden" aria-label="Toggle menu">
+        <div class="relative h-4 w-5">
+          <span id="menu-bar-1" class="absolute left-0 top-0 h-[1.5px] w-full bg-foreground transition-all duration-300"></span>
+          <span id="menu-bar-2" class="absolute left-0 top-1/2 -translate-y-1/2 h-[1.5px] w-full bg-foreground transition-opacity duration-200"></span>
+          <span id="menu-bar-3" class="absolute left-0 bottom-0 h-[1.5px] w-full bg-foreground transition-all duration-300"></span>
+        </div>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-overlay fixed inset-0 z-30 flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl opacity-0 pointer-events-none md:hidden">
+    <a href="#about" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">About</a>
+    <a href="#services" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Services</a>
+    <a href="#testimonials" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Testimonials</a>
+    <a href="#contact" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Contact</a>
+    <a href="https://calendly.com/twiltshire9/business-interview?month=2026-03" target="_blank" rel="noopener noreferrer" class="menu-item mt-8 rounded-full bg-accent px-8 py-3 text-base font-medium text-white opacity-0 translate-y-6" onclick="closeMenu()">Book a call</a>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative min-h-[100dvh] bg-background overflow-hidden flex items-center justify-center">
+      <!-- Ambient layers -->
+      <div class="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/30"></div>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-64 h-64 bg-accent/[0.03] rounded-full blur-3xl animate-pulse"></div>
+
+      <!-- Wireframe globe -->
+      <div class="globe-wireframe">
+        <svg width="700" height="700" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.3">
+          <circle cx="100" cy="100" r="80" />
+          <ellipse cx="100" cy="100" rx="80" ry="30" />
+          <ellipse cx="100" cy="100" rx="80" ry="55" />
+          <ellipse cx="100" cy="100" rx="30" ry="80" />
+          <ellipse cx="100" cy="100" rx="55" ry="80" />
+          <line x1="20" y1="100" x2="180" y2="100" />
+          <line x1="100" y1="20" x2="100" y2="180" />
+          <ellipse cx="100" cy="100" rx="80" ry="15" transform="rotate(30 100 100)" />
+          <ellipse cx="100" cy="100" rx="80" ry="15" transform="rotate(-30 100 100)" />
+        </svg>
+      </div>
+
+      <div class="relative z-10 text-center space-y-5 sm:space-y-8 max-w-5xl mx-auto px-5 sm:px-6 py-6 sm:py-10">
+        <div class="space-y-4 sm:space-y-6">
+          <!-- Eyebrow badge -->
+          <div class="reveal inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-accent/20 backdrop-blur-xl bg-accent-light/40">
+            <span class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
+            <span class="text-xs font-semibold text-accent tracking-[0.2em] uppercase">Personal growth & leadership</span>
+          </div>
+
+          <!-- Headline -->
+          <div class="space-y-4">
+            <h1 class="reveal text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-[0.9] select-none">
+              <span class="block text-muted font-light text-2xl sm:text-4xl md:text-6xl mb-2">Unlock your potential.</span>
+              <span class="block relative">
+                <span class="text-foreground">Redefine success.</span>
+                <div class="hero-underline absolute -bottom-3 left-0 h-1 bg-gradient-to-r from-accent via-accent/60 to-transparent rounded-full"></div>
+              </span>
+            </h1>
+          </div>
+
+          <!-- Subtext -->
+          <div class="reveal max-w-2xl mx-auto">
+            <p class="text-base sm:text-lg md:text-xl text-muted leading-relaxed">
+              We help ambitious professionals build flexible, purpose-driven careers through
+              <span class="text-foreground font-medium">self-leadership</span>,
+              <span class="text-foreground font-medium">communication mastery</span>,
+              and a stronger sense of direction.
+            </p>
+          </div>
+
+          <!-- Brand name -->
+          <p class="reveal text-2xl sm:text-4xl md:text-5xl font-bold tracking-tighter text-foreground">The Blue Shed Group</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="reveal flex justify-center items-center">
+          <a href="https://calendly.com/twiltshire9/business-interview?month=2026-03" target="_blank" rel="noopener noreferrer"
+            class="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent text-white rounded-full font-medium text-base shadow-[0_8px_24px_rgba(26,75,140,0.2)] transition-all duration-500 overflow-hidden hover:scale-[1.03] hover:-translate-y-0.5 active:scale-[0.98]">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+            <span class="relative z-10">Book your free consultation</span>
+            <span class="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="grid gap-16 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-24">
+          <div class="reveal from-left">
+            <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent-light/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent">About us</span>
+            <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">Your hub for personal & leadership transformation</h2>
+          </div>
+          <div class="reveal from-right">
+            <div class="space-y-6">
+              <p class="max-w-[65ch] text-base leading-relaxed text-muted sm:text-lg">The Blue Shed Group delivers renowned programmes known for life-changing results. We work with professionals across the globe, from HR and sales to education and consulting, building confidence, clarity, and self-leadership skills that last.</p>
+              <p class="max-w-[65ch] text-base leading-relaxed text-muted sm:text-lg">Our approach centres on practical outcomes, not theory. Every course is thoughtfully crafted to create real-world impact you can feel from day one.</p>
+              <div class="grid grid-cols-3 gap-4 pt-4 sm:gap-6">
+                <div class="reveal">
+                  <div class="text-3xl font-semibold tracking-tighter text-foreground">12+</div>
+                  <div class="mt-1 text-sm text-muted">Years of experience</div>
+                </div>
+                <div class="reveal">
+                  <div class="text-3xl font-semibold tracking-tighter text-foreground">2,400+</div>
+                  <div class="mt-1 text-sm text-muted">Lives transformed</div>
+                </div>
+                <div class="reveal">
+                  <div class="text-3xl font-semibold tracking-tighter text-foreground">30+</div>
+                  <div class="mt-1 text-sm text-muted">Countries reached</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="reveal mb-16 max-w-[560px]">
+          <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent-light/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent">What you will learn</span>
+          <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">Programmes built for real results</h2>
+          <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">Focused areas of development designed to create lasting change in how you work, lead, and live.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="reveal service-card group overflow-hidden rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.06)]">
+            <div class="relative h-40 w-full overflow-hidden rounded-[calc(1.5rem-0.375rem)] sm:h-56">
+              <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800&h=500&fit=crop&q=80" alt="Self-Leadership" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div class="p-8 sm:p-10">
+              <h3 class="text-xl font-semibold tracking-tight">Self-Leadership</h3>
+              <p class="mt-3 max-w-[50ch] leading-relaxed text-muted">Develop unwavering confidence and clarity. Learn to lead yourself before leading others, with frameworks that shift how you think, decide, and act.</p>
+            </div>
+          </div>
+          <div class="reveal service-card group overflow-hidden rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.06)]">
+            <div class="relative h-40 w-full overflow-hidden rounded-[calc(1.5rem-0.375rem)] sm:h-56">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop&q=80" alt="Communication mastery" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div class="p-8 sm:p-10">
+              <h3 class="text-xl font-semibold tracking-tight">Communication mastery</h3>
+              <p class="mt-3 max-w-[50ch] leading-relaxed text-muted">Transform the way you connect with others. Build the skills to influence, inspire, and navigate any conversation with purpose and ease.</p>
+            </div>
+          </div>
+          <div class="reveal service-card group overflow-hidden rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.06)]">
+            <div class="relative h-40 w-full overflow-hidden rounded-[calc(1.5rem-0.375rem)] sm:h-56">
+              <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=500&fit=crop&crop=center&q=80" alt="Mindset education" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div class="p-8 sm:p-10">
+              <h3 class="text-xl font-semibold tracking-tight">Mindset education</h3>
+              <p class="mt-3 max-w-[50ch] leading-relaxed text-muted">Rewire limiting beliefs and cultivate a growth-oriented mindset. Our programmes combine proven psychology with actionable daily practices.</p>
+            </div>
+          </div>
+          <div class="reveal service-card group overflow-hidden rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.06)]">
+            <div class="relative h-40 w-full overflow-hidden rounded-[calc(1.5rem-0.375rem)] sm:h-56">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop&q=80" alt="Career direction" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            <div class="p-8 sm:p-10">
+              <h3 class="text-xl font-semibold tracking-tight">Career direction</h3>
+              <p class="mt-3 max-w-[50ch] leading-relaxed text-muted">Gain a stronger sense of where you're heading. We help you map a path that aligns your skills, values, and ambitions into a career that fits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="rounded-[2rem] border border-border/60 bg-surface p-2">
+          <div class="rounded-[calc(2rem-0.5rem)] bg-surface-alt/40 px-8 py-16 sm:px-16 sm:py-20">
+            <div class="grid gap-12 md:grid-cols-[auto_1fr] md:items-center md:gap-16">
+              <div class="reveal from-left flex flex-col items-center text-center md:items-start md:text-left">
+                <div class="h-32 w-32 overflow-hidden rounded-3xl shadow-[0_8px_24px_rgba(26,75,140,0.15)]">
+                  <img src="tom-wiltshire.jpeg" alt="Tom Wiltshire, Founder of The Blue Shed Group" class="h-full w-full object-cover" />
+                </div>
+                <h3 class="mt-6 text-2xl font-semibold tracking-tight sm:text-3xl">Tom Wiltshire</h3>
+                <p class="mt-1 text-sm font-medium text-accent">Founder, The Blue Shed Group</p>
+                <p class="mt-1 text-sm text-muted">Surrey, United Kingdom</p>
+              </div>
+              <div class="reveal from-right space-y-5">
+                <h3 class="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">Hi I'm Tom Wiltshire!</h3>
+                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">With years of experience in Corporate HR, my journey into entrepreneurship has opened up incredible opportunities—including traveling the world and building a global client base.</p>
+                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">Originally from the UK, I began my career as a primary school teacher before transitioning into HR, where I spent several impactful years supporting people and organisations. Eventually, I took the leap into building something of my own—creating a life and business aligned with my values and goals.</p>
+                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">Now based in Surrey, just outside of London, I work with clients across the UK and around the world. Through my business success, I've carved out a niche in helping individuals set themselves up for success and supporting businesses to grow by unlocking the true potential of their people—and turning that potential into profit.</p>
+                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">I'm looking to connect with individuals who are ready to shed the shadows, step into their light, and take their career or business to the next level. If that sounds like you, let's connect and see if we're aligned—I'd love to hear your story.</p>
+                <a href="#contact" class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent transition-all duration-300 hover:gap-3">
+                  Get in touch
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promise -->
+    <section class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="reveal mb-16 text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent-light/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent">Our promise</span>
+          <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">Why professionals choose us</h2>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">01</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Practical outcomes</h3>
+              <p class="mt-3 leading-relaxed text-muted">Every course is designed around real-world application. You will walk away with tools you can use the same day, not abstract theory that sits in a folder.</p>
+            </div>
+          </div>
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">02</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Lifetime access</h3>
+              <p class="mt-3 leading-relaxed text-muted">Enrol once, learn forever. All materials, updates, and resources are yours for life. Revisit any module whenever you need a refresher.</p>
+            </div>
+          </div>
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">03</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Personalised support</h3>
+              <p class="mt-3 leading-relaxed text-muted">Your goals are unique. We tailor guidance to your specific situation, whether you are pivoting careers, seeking a promotion, or building something new.</p>
+            </div>
+          </div>
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">04</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Community of peers</h3>
+              <p class="mt-3 leading-relaxed text-muted">Join a network of driven professionals across HR, sales, education, and consulting. Share experiences, stay accountable, and grow together.</p>
+            </div>
+          </div>
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">05</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Ongoing mentorship</h3>
+              <p class="mt-3 leading-relaxed text-muted">Support does not end when the course does. We stay with you through the transition, offering continued guidance as you apply what you have learned.</p>
+            </div>
+          </div>
+          <div class="reveal group relative rounded-[1.5rem] border border-border/60 bg-surface p-1.5 transition-all duration-500 hover:border-accent/20 hover:shadow-[0_12px_40px_rgba(26,75,140,0.08)]">
+            <div class="rounded-[calc(1.5rem-0.375rem)] bg-surface-alt/40 p-8">
+              <div class="mb-6 flex items-center justify-between">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-light text-accent">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <span class="text-4xl font-bold tabular-nums text-accent/10 tracking-tighter">06</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight">Global reach</h3>
+              <p class="mt-3 leading-relaxed text-muted">Work with us from anywhere in the world. Our programmes are fully online, giving you the flexibility to learn and grow on your schedule, wherever you are.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="reveal mb-4 text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent-light/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent">Testimonials</span>
+          <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">What our clients are saying</h2>
+        </div>
+
+        <div class="max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20">
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+            <!-- Images -->
+            <div>
+              <div class="relative h-80 w-full" id="testimonial-images">
+                <img src="christina.png" alt="Christina" class="testimonial-img absolute inset-0 h-full w-full rounded-3xl object-cover object-center transition-all duration-400" data-index="0" />
+                <img src="eamon.png" alt="Eamon" class="testimonial-img absolute inset-0 h-full w-full rounded-3xl object-cover object-center transition-all duration-400" data-index="1" style="opacity:0.7;transform:scale(0.95) rotate(4deg);" />
+                <img src="katy.png" alt="Katy" class="testimonial-img absolute inset-0 h-full w-full rounded-3xl object-cover object-center transition-all duration-400" data-index="2" style="opacity:0.7;transform:scale(0.95) rotate(-7deg);" />
+              </div>
+            </div>
+            <!-- Text -->
+            <div class="flex flex-col py-4">
+              <div class="min-h-[280px] md:min-h-[300px]" id="testimonial-text">
+                <h3 id="t-name" class="text-2xl font-bold text-foreground">Christina</h3>
+                <p id="t-designation" class="text-sm text-muted-foreground">Canada</p>
+                <p id="t-quote" class="text-muted-foreground mt-8 text-lg">&ldquo;Since diving into these online courses I have been able to fall in love with myself, which is truly a blessing. The actionable steps provided have led me to feel again. Waking up each morning and being thankful for who I am is priceless. The best part is going through the course repeatedly and having my kids show up as their true self. Pure magic!&rdquo;</p>
+              </div>
+              <div class="flex gap-4 pt-6">
+                <button onclick="prevTestimonial()" class="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-border transition-colors">
+                  <svg class="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <button onclick="nextTestimonial()" class="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-border transition-colors">
+                  <svg class="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spiritual Laws -->
+    <section class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="rounded-[2rem] border border-border/60 bg-surface p-2">
+          <div class="rounded-[calc(2rem-0.5rem)] bg-surface-alt/40 px-8 py-16 sm:px-16 sm:py-20">
+            <div class="reveal mb-14 max-w-[640px]">
+              <span class="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent-light/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-accent">Spiritual laws of success</span>
+              <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">Principles that guide lasting transformation</h2>
+              <p class="mt-4 max-w-[55ch] text-base leading-relaxed text-muted sm:text-lg">The spiritual laws of success guide individuals to align with universal principles, fostering inner harmony and external prosperity.</p>
+            </div>
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="reveal space-y-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-sm font-semibold tabular-nums text-accent">01</div>
+                <h3 class="text-lg font-semibold tracking-tight">Intention</h3>
+                <p class="leading-relaxed text-muted">Harness the power of focused intention to direct your energy toward meaningful goals and outcomes.</p>
+              </div>
+              <div class="reveal space-y-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-sm font-semibold tabular-nums text-accent">02</div>
+                <h3 class="text-lg font-semibold tracking-tight">Giving</h3>
+                <p class="leading-relaxed text-muted">The flow of giving and receiving creates abundance. What you put out into the world returns to you.</p>
+              </div>
+              <div class="reveal space-y-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-sm font-semibold tabular-nums text-accent">03</div>
+                <h3 class="text-lg font-semibold tracking-tight">Gratitude</h3>
+                <p class="leading-relaxed text-muted">Cultivating gratitude shifts your perspective, opening doors to greater fulfilment and opportunity.</p>
+              </div>
+              <div class="reveal space-y-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light text-sm font-semibold tabular-nums text-accent">04</div>
+                <h3 class="text-lg font-semibold tracking-tight">Detachment</h3>
+                <p class="leading-relaxed text-muted">Release rigid attachment to outcomes. Trust the process and allow space for growth to unfold naturally.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="px-4 py-16 sm:py-36">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="relative overflow-hidden rounded-[2rem] bg-accent px-8 py-20 text-center sm:px-16 sm:py-28">
+          <div class="pointer-events-none absolute inset-0 opacity-30" style="background: radial-gradient(ellipse 60% 80% at 30% 100%, rgba(255,255,255,0.15), transparent), radial-gradient(ellipse 40% 60% at 80% 0%, rgba(255,255,255,0.1), transparent)"></div>
+          <div class="reveal relative z-10">
+            <h2 class="mx-auto max-w-[600px] text-3xl font-semibold leading-[1.12] tracking-tighter text-white sm:text-4xl md:text-5xl">Ready to take the first step?</h2>
+            <p class="mx-auto mt-6 max-w-[480px] text-base leading-relaxed text-white/70 sm:text-lg">Book a free personal development consultation. No pressure, no obligation. Just an honest conversation about where you are and where you want to go.</p>
+            <div class="mt-10 flex flex-col items-center gap-6">
+              <a href="https://calendly.com/twiltshire9/business-interview?month=2026-03" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-semibold text-accent transition-all duration-300 hover:bg-white/90 active:scale-[0.98]">
+                Talk to a consultant
+                <span class="flex h-7 w-7 items-center justify-center rounded-full bg-accent/10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </span>
+              </a>
+              <div class="flex flex-col items-center gap-2 text-sm text-white/50">
+                <span>or call directly</span>
+                <a href="tel:+441784693019" class="font-medium text-white/80 transition-colors duration-300 hover:text-white">+44 1784 693 019</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-border/60 px-4 py-16">
+    <div class="mx-auto max-w-[1200px]">
+      <div class="grid gap-12 sm:grid-cols-2 md:grid-cols-4">
+        <div class="sm:col-span-2 md:col-span-1">
+          <div class="text-lg font-semibold tracking-tight">The Blue Shed Group</div>
+          <p class="mt-3 max-w-[280px] text-sm leading-relaxed text-muted">Empowering professionals to build flexible, purpose-driven careers.</p>
+        </div>
+        <div>
+          <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Navigation</div>
+          <nav class="mt-4 flex flex-col gap-3">
+            <a href="#about" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">About</a>
+            <a href="#services" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Services</a>
+            <a href="#testimonials" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Testimonials</a>
+            <a href="#contact" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Contact</div>
+          <div class="mt-4 flex flex-col gap-3">
+            <a href="mailto:info@blueshedgroup.com" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">info@blueshedgroup.com</a>
+            <a href="tel:+441784693019" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">+44 1784 693 019</a>
+            <span class="text-sm text-muted">Staines, Surrey, UK</span>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Legal</div>
+          <div class="mt-4 flex flex-col gap-3">
+            <a href="#" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Privacy policy</a>
+            <a href="#" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Terms of service</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-16 flex flex-col items-center gap-4 border-t border-border/60 pt-8 text-center sm:flex-row sm:justify-between">
+        <span class="text-sm text-muted">&copy; 2026 The Blue Shed Group. All rights reserved.</span>
+        <span class="text-sm text-muted">dev &mdash; <a href="https://maiaa.ai" target="_blank" rel="noopener noreferrer" class="font-medium text-foreground/70 transition-colors duration-200 hover:text-foreground">maiaa.ai</a></span>
+        <span class="text-sm text-muted">Surrey, United Kingdom</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.classList.add('nav-scrolled');
+        nav.style.backdropFilter = 'blur(24px)';
+      } else {
+        nav.classList.remove('nav-scrolled');
+        nav.style.backdropFilter = 'blur(12px)';
+      }
+    }, { passive: true });
+
+    // Mobile menu
+    let menuOpen = false;
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('menu-bar-1');
+    const bar2 = document.getElementById('menu-bar-2');
+    const bar3 = document.getElementById('menu-bar-3');
+
+    function closeMenu() {
+      menuOpen = false;
+      updateMenu();
+    }
+
+    function updateMenu() {
+      if (menuOpen) {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        bar1.style.top = '50%'; bar1.style.transform = 'translateY(-50%) rotate(45deg)';
+        bar2.style.opacity = '0';
+        bar3.style.bottom = 'auto'; bar3.style.top = '50%'; bar3.style.transform = 'translateY(-50%) rotate(-45deg)';
+        mobileMenu.querySelectorAll('.menu-item').forEach((item, i) => {
+          setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 100 + i * 60);
+        });
+      } else {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+        bar1.style.top = '0'; bar1.style.transform = '';
+        bar2.style.opacity = '1';
+        bar3.style.bottom = '0'; bar3.style.top = 'auto'; bar3.style.transform = '';
+        mobileMenu.querySelectorAll('.menu-item').forEach(item => {
+          item.style.opacity = '0'; item.style.transform = 'translateY(1.5rem)';
+        });
+      }
+    }
+
+    menuToggle.addEventListener('click', () => { menuOpen = !menuOpen; updateMenu(); });
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '-80px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 6) * 0.08 + 's';
+      revealObserver.observe(el);
+    });
+
+    // Hero underline
+    setTimeout(() => {
+      const underline = document.querySelector('.hero-underline');
+      if (underline) underline.classList.add('visible');
+    }, 1200);
+
+    // Testimonials
+    const testimonials = [
+      { name: 'Christina', designation: 'Canada', quote: 'Since diving into these online courses I have been able to fall in love with myself, which is truly a blessing. The actionable steps provided have led me to feel again. Waking up each morning and being thankful for who I am is priceless. The best part is going through the course repeatedly and having my kids show up as their true self. Pure magic!', small: false },
+      { name: 'Eamon', designation: 'United Kingdom', quote: 'The first course I embarked on here hit the spot - valuable and transformative material from the very first day. Easy to understand and expounded in a relaxed, friendly and professional manner. Implementation was easy and has helped me to explore thoughts way outside of my comfort zone.', small: false },
+      { name: 'Katy', designation: 'New Zealand', quote: 'I have learned so much from undertaking these programs. There have been so many significant shifts in my mindset, emotional state and way of thinking. Truly life-transforming! The flexibility of learning at my own pace, combined with the expertly crafted content has allowed me to delve deep into areas of personal growth that I had never explored before. I highly recommend these programs to anyone looking to invest in themselves and their future.', small: true },
+    ];
+    const rotations = [0, 4, -7];
+    let activeTestimonial = 0;
+
+    function updateTestimonials() {
+      const imgs = document.querySelectorAll('.testimonial-img');
+      imgs.forEach((img, i) => {
+        if (i === activeTestimonial) {
+          img.style.opacity = '1';
+          img.style.transform = 'scale(1) rotate(0deg)';
+          img.style.zIndex = '10';
+        } else {
+          img.style.opacity = '0.7';
+          img.style.transform = `scale(0.95) rotate(${rotations[i]}deg)`;
+          img.style.zIndex = String(testimonials.length - i);
+        }
+      });
+
+      const t = testimonials[activeTestimonial];
+      document.getElementById('t-name').textContent = t.name;
+      document.getElementById('t-designation').textContent = t.designation;
+      const quoteEl = document.getElementById('t-quote');
+      quoteEl.textContent = `\u201C${t.quote}\u201D`;
+      quoteEl.className = `text-muted-foreground mt-8 ${t.small ? 'text-base' : 'text-lg'}`;
+    }
+
+    function nextTestimonial() {
+      activeTestimonial = (activeTestimonial + 1) % testimonials.length;
+      updateTestimonials();
+    }
+
+    function prevTestimonial() {
+      activeTestimonial = (activeTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateTestimonials();
+    }
+
+    // Autoplay testimonials
+    setInterval(nextTestimonial, 8000);
+  </script>
+
+</body>
+</html>
