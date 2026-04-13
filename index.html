@@ -90,7 +90,7 @@
         <span class="text-sm font-semibold tracking-tight text-foreground">The Blue Shed Group</span>
       </a>
       <div class="hidden items-center gap-0.5 md:flex">
-        <a href="#about" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">About</a>
+        <a href="about.html" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">About</a>
         <a href="#services" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Services</a>
         <a href="#testimonials" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Testimonials</a>
         <a href="#contact" class="rounded-full px-4 py-2 text-sm text-muted transition-all duration-300 hover:bg-accent-light hover:text-foreground">Contact</a>
@@ -108,7 +108,7 @@
 
   <!-- Mobile menu overlay -->
   <div id="mobile-menu" class="mobile-overlay fixed inset-0 z-30 flex flex-col items-center justify-center bg-background/95 backdrop-blur-3xl opacity-0 pointer-events-none md:hidden">
-    <a href="#about" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">About</a>
+    <a href="about.html" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">About</a>
     <a href="#services" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Services</a>
     <a href="#testimonials" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Testimonials</a>
     <a href="#contact" class="menu-item py-4 text-2xl font-medium tracking-tight text-foreground opacity-0 translate-y-6" onclick="closeMenu()">Contact</a>
@@ -271,37 +271,6 @@
       </div>
     </section>
 
-    <!-- Founder -->
-    <section class="px-4 py-16 sm:py-36">
-      <div class="mx-auto max-w-[1200px]">
-        <div class="rounded-[2rem] border border-border/60 bg-surface p-2">
-          <div class="rounded-[calc(2rem-0.5rem)] bg-surface-alt/40 px-8 py-16 sm:px-16 sm:py-20">
-            <div class="grid gap-12 md:grid-cols-[auto_1fr] md:items-center md:gap-16">
-              <div class="reveal from-left flex flex-col items-center text-center md:items-start md:text-left">
-                <div class="h-32 w-32 overflow-hidden rounded-3xl shadow-[0_8px_24px_rgba(26,75,140,0.15)]">
-                  <img src="tom-wiltshire.jpeg" alt="Tom Wiltshire, Founder of The Blue Shed Group" class="h-full w-full object-cover" />
-                </div>
-                <h3 class="mt-6 text-2xl font-semibold tracking-tight sm:text-3xl">Tom Wiltshire</h3>
-                <p class="mt-1 text-sm font-medium text-accent">Founder, The Blue Shed Group</p>
-                <p class="mt-1 text-sm text-muted">Surrey, United Kingdom</p>
-              </div>
-              <div class="reveal from-right space-y-5">
-                <h3 class="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">Hi I'm Tom Wiltshire!</h3>
-                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">With years of experience in Corporate HR, my journey into entrepreneurship has opened up incredible opportunities—including traveling the world and building a global client base.</p>
-                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">Originally from the UK, I began my career as a primary school teacher before transitioning into HR, where I spent several impactful years supporting people and organisations. Eventually, I took the leap into building something of my own—creating a life and business aligned with my values and goals.</p>
-                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">Now based in Surrey, just outside of London, I work with clients across the UK and around the world. Through my business success, I've carved out a niche in helping individuals set themselves up for success and supporting businesses to grow by unlocking the true potential of their people—and turning that potential into profit.</p>
-                <p class="max-w-none text-sm leading-relaxed text-muted sm:text-base">I'm looking to connect with individuals who are ready to shed the shadows, step into their light, and take their career or business to the next level. If that sounds like you, let's connect and see if we're aligned—I'd love to hear your story.</p>
-                <a href="#contact" class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent transition-all duration-300 hover:gap-3">
-                  Get in touch
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Promise -->
     <section class="px-4 py-16 sm:py-36">
       <div class="mx-auto max-w-[1200px]">
@@ -395,8 +364,8 @@
           <h2 class="mt-6 text-3xl font-semibold leading-[1.12] tracking-tighter sm:text-4xl md:text-5xl">What our clients are saying</h2>
         </div>
 
-        <div class="max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20">
-          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div class="relative max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
             <!-- Images -->
             <div>
               <div class="relative h-80 w-full" id="testimonial-images">
@@ -406,19 +375,11 @@
               </div>
             </div>
             <!-- Text -->
-            <div class="flex flex-col py-4">
-              <div class="min-h-[280px] md:min-h-[300px]" id="testimonial-text">
+            <div class="flex flex-col justify-center py-4">
+              <div id="testimonial-text">
                 <h3 id="t-name" class="text-2xl font-bold text-foreground">Christina</h3>
                 <p id="t-designation" class="text-sm text-muted-foreground">Canada</p>
                 <p id="t-quote" class="text-muted-foreground mt-8 text-lg">&ldquo;Since diving into these online courses I have been able to fall in love with myself, which is truly a blessing. The actionable steps provided have led me to feel again. Waking up each morning and being thankful for who I am is priceless. The best part is going through the course repeatedly and having my kids show up as their true self. Pure magic!&rdquo;</p>
-              </div>
-              <div class="flex gap-4 pt-6">
-                <button onclick="prevTestimonial()" class="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-border transition-colors">
-                  <svg class="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                </button>
-                <button onclick="nextTestimonial()" class="h-7 w-7 rounded-full bg-secondary flex items-center justify-center group/button hover:bg-border transition-colors">
-                  <svg class="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
               </div>
             </div>
           </div>
@@ -489,6 +450,14 @@
     </section>
   </main>
 
+  <!-- Fixed testimonial arrows -->
+  <button id="testimonial-prev" onclick="prevTestimonial()" class="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 h-11 w-11 rounded-full bg-surface border border-border/60 shadow-lg flex items-center justify-center group/button hover:bg-accent-light hover:border-accent/20 transition-all duration-300 opacity-0 pointer-events-none">
+    <svg class="h-5 w-5 text-foreground group-hover/button:rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  </button>
+  <button id="testimonial-next" onclick="nextTestimonial()" class="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 h-11 w-11 rounded-full bg-surface border border-border/60 shadow-lg flex items-center justify-center group/button hover:bg-accent-light hover:border-accent/20 transition-all duration-300 opacity-0 pointer-events-none">
+    <svg class="h-5 w-5 text-foreground group-hover/button:-rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+
   <!-- Footer -->
   <footer class="border-t border-border/60 px-4 py-16">
     <div class="mx-auto max-w-[1200px]">
@@ -500,7 +469,7 @@
         <div>
           <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Navigation</div>
           <nav class="mt-4 flex flex-col gap-3">
-            <a href="#about" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">About</a>
+            <a href="about.html" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">About</a>
             <a href="#services" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Services</a>
             <a href="#testimonials" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Testimonials</a>
             <a href="#contact" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Contact</a>
@@ -515,10 +484,10 @@
           </div>
         </div>
         <div>
-          <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Legal</div>
+          <div class="text-xs font-medium uppercase tracking-[0.15em] text-muted">Connect</div>
           <div class="mt-4 flex flex-col gap-3">
-            <a href="#" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Privacy policy</a>
-            <a href="#" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Terms of service</a>
+            <a href="https://www.linkedin.com/in/thomas-wiltshire-blueshed/" target="_blank" rel="noopener noreferrer" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">LinkedIn</a>
+            <a href="https://www.instagram.com/blueshedgroup/" target="_blank" rel="noopener noreferrer" class="text-sm text-foreground/70 transition-colors duration-200 hover:text-foreground">Instagram</a>
           </div>
         </div>
       </div>
@@ -641,6 +610,29 @@
       activeTestimonial = (activeTestimonial - 1 + testimonials.length) % testimonials.length;
       updateTestimonials();
     }
+
+    // Show/hide fixed arrows when testimonials section is visible
+    const testimonialSection = document.getElementById('testimonials');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+
+    const arrowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          prevBtn.style.opacity = '1';
+          prevBtn.style.pointerEvents = 'auto';
+          nextBtn.style.opacity = '1';
+          nextBtn.style.pointerEvents = 'auto';
+        } else {
+          prevBtn.style.opacity = '0';
+          prevBtn.style.pointerEvents = 'none';
+          nextBtn.style.opacity = '0';
+          nextBtn.style.pointerEvents = 'none';
+        }
+      });
+    }, { threshold: 0.3 });
+
+    arrowObserver.observe(testimonialSection);
 
     // Autoplay testimonials
     setInterval(nextTestimonial, 8000);
