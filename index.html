@@ -186,16 +186,54 @@
     </section>
 
     <!-- Video Section -->
-    <section class="video-section" style="width:100%;height:100dvh;overflow:hidden;position:relative;">
+    <section id="video-section" class="video-section" style="width:100%;height:100dvh;overflow:hidden;position:relative;">
       <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
         <source src="blueshed-loop.mp4" type="video/mp4" />
       </video>
     </section>
     <style>
       @media (max-width: 768px) and (orientation: portrait) {
-        .video-section { height: 70vw !important; }
+        .video-section { height: 112.5vw !important; }
+      }
+      .surroundings-fade {
+        transition: opacity 0.8s ease, filter 0.8s ease;
+      }
+      .surroundings-fade.dimmed {
+        opacity: 0.05;
+        filter: blur(4px);
+        pointer-events: none;
       }
     </style>
+    <script>
+      (function() {
+        var videoSection = document.getElementById('video-section');
+        var targets = [];
+        function initFade() {
+          var hero = document.querySelector('main > section:first-child');
+          var about = document.getElementById('about');
+          var nav = document.getElementById('main-nav');
+          targets = [hero, about, nav].filter(Boolean);
+          targets.forEach(function(el) { el.classList.add('surroundings-fade'); });
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              targets.forEach(function(el) {
+                if (entry.isIntersecting) {
+                  el.classList.add('dimmed');
+                } else {
+                  el.classList.remove('dimmed');
+                }
+              });
+            });
+          }, { threshold: 0.5 });
+          observer.observe(videoSection);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initFade);
+        } else {
+          initFade();
+        }
+      })();
+    </script>
 
     <!-- About -->
     <section id="about" class="px-4 py-16 sm:py-36">
