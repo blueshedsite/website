@@ -187,7 +187,7 @@
 
     <!-- Video Section -->
     <section id="video-section" class="video-section" style="width:100%;height:100dvh;overflow:hidden;position:relative;margin-bottom:8rem;">
-      <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <video id="loop-video" muted loop playsinline preload="auto" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">
         <source src="blueshed-loop.mp4" type="video/mp4" />
       </video>
     </section>
@@ -212,9 +212,10 @@
           var hero = document.querySelector('main > section:first-child');
           var about = document.getElementById('about');
           var nav = document.getElementById('main-nav');
+          var video = document.getElementById('loop-video');
           targets = [hero, about, nav].filter(Boolean);
           targets.forEach(function(el) { el.classList.add('surroundings-fade'); });
-          var observer = new IntersectionObserver(function(entries) {
+          var fadeObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
               targets.forEach(function(el) {
                 if (entry.isIntersecting) {
@@ -225,7 +226,21 @@
               });
             });
           }, { threshold: 0.5 });
-          observer.observe(videoSection);
+          fadeObserver.observe(videoSection);
+
+          if (video) {
+            var playObserver = new IntersectionObserver(function(entries) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  video.play().catch(function(){});
+                } else {
+                  video.pause();
+                  video.currentTime = 0;
+                }
+              });
+            }, { threshold: 0.1 });
+            playObserver.observe(videoSection);
+          }
         }
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', initFade);
