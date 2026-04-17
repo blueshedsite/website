@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /application_confirmation/
+
+Sitemap: https://www.blueshedgroup.com/sitemap.xml
