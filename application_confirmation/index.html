@@ -139,7 +139,12 @@
 
               <!-- Right: Form -->
               <div class="reveal from-right">
-                <form id="application-form" class="space-y-6">
+                <form id="application-form" name="application" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="space-y-6">
+                  <!-- Netlify form metadata -->
+                  <input type="hidden" name="form-name" value="application" />
+                  <p class="hidden">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                  </p>
                   <div class="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label for="first-name" class="block text-sm font-medium text-foreground mb-1.5">First name <span class="text-accent">*</span></label>
@@ -538,32 +543,36 @@
       revealObserver.observe(el);
     });
 
-    // Form submission
+    // Form submission — posts to Netlify Forms, then opens Calendly with prefill
     document.getElementById('application-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const form = this;
       const successEl = document.getElementById('form-success');
 
-      // Collect form data
-      const data = {
-        firstName: document.getElementById('first-name').value,
-        lastName: document.getElementById('last-name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        country: document.getElementById('country').value,
-        timezone: document.getElementById('timezone').value,
-      };
+      const firstName = document.getElementById('first-name').value;
+      const lastName = document.getElementById('last-name').value;
+      const email = document.getElementById('email').value;
 
-      // Show success state
       form.style.display = 'none';
       successEl.classList.remove('hidden');
 
-      // Redirect to Calendly after a short delay
+      // Send all form data to Netlify — fire-and-forget so a failure never blocks the booking flow
+      const formData = new FormData(form);
+      const body = new URLSearchParams(formData).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body,
+      })
+        .then((res) => console.log('[Netlify] status', res.status))
+        .catch((err) => console.error('[Netlify] error', err));
+
       setTimeout(() => {
         const calendlyUrl = 'https://calendly.com/twiltshire9/business-interview?month=2026-03'
-          + '&name=' + encodeURIComponent(data.firstName + ' ' + data.lastName)
-          + '&email=' + encodeURIComponent(data.email);
+          + '&name=' + encodeURIComponent(firstName + ' ' + lastName)
+          + '&email=' + encodeURIComponent(email);
         window.open(calendlyUrl, '_blank');
       }, 1500);
     });
