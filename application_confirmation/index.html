@@ -237,7 +237,14 @@
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
                   </div>
                   <h3 class="text-2xl font-semibold tracking-tight text-foreground">You're all set!</h3>
-                  <p class="mt-3 text-base text-muted max-w-md mx-auto">Redirecting you to book your consultation call with Tom...</p>
+                  <p class="mt-3 text-base text-muted max-w-md mx-auto">Your application has been received. Click the button below to book your consultation call with Tom.</p>
+                  <a id="calendly-link" href="#" target="_blank" rel="noopener noreferrer"
+                    class="group mt-8 inline-flex items-center gap-3 px-8 py-4 bg-accent text-white rounded-full font-medium text-base shadow-[0_8px_24px_rgba(26,75,140,0.2)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98]">
+                    Book your consultation call
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:translate-x-0.5">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </span>
+                  </a>
                 </div>
               </div>
 
@@ -549,10 +556,21 @@
 
       const form = this;
       const successEl = document.getElementById('form-success');
+      const calendlyLink = document.getElementById('calendly-link');
 
       const firstName = document.getElementById('first-name').value;
       const lastName = document.getElementById('last-name').value;
       const email = document.getElementById('email').value;
+
+      const calendlyUrl = 'https://calendly.com/twiltshire9/business-interview?month=2026-03'
+        + '&name=' + encodeURIComponent(firstName + ' ' + lastName)
+        + '&email=' + encodeURIComponent(email);
+
+      // Open Calendly immediately — still inside the user gesture, so popup blockers allow it
+      window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
+
+      // Update the fallback link on the success screen so users can click it manually if the popup was blocked
+      calendlyLink.href = calendlyUrl;
 
       form.style.display = 'none';
       successEl.classList.remove('hidden');
@@ -568,13 +586,6 @@
       })
         .then((res) => console.log('[Netlify] status', res.status))
         .catch((err) => console.error('[Netlify] error', err));
-
-      setTimeout(() => {
-        const calendlyUrl = 'https://calendly.com/twiltshire9/business-interview?month=2026-03'
-          + '&name=' + encodeURIComponent(firstName + ' ' + lastName)
-          + '&email=' + encodeURIComponent(email);
-        window.open(calendlyUrl, '_blank');
-      }, 1500);
     });
   </script>
 
